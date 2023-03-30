@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { WhiteTheme } from "styles/theme";
+import GlobalStyles from "styles/global";
+import MovieList from "components/MovieList/MovieList";
+
+import { SearchResponse } from "core/types/response";
+import moviesService from "core/services/movies.service";
+import Navbar from "components/Navbar/Navbar";
+
+const App = () => {
+    const [movies, setMovies] = useState<SearchResponse[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const { Search } = await moviesService.getSearchResults({ movieName: "Star" });
+            console.log(Search);
+            setMovies(Search);
+        };
+        fetchData();
+    }, []);
+
+    return (
+        <ThemeProvider theme={WhiteTheme}>
+            <Navbar />
+            <MovieList movies={movies} />
+            <MovieList movies={movies} />
+            <MovieList movies={movies} />
+            <MovieList movies={movies} />
+            <MovieList movies={movies} />
+            <MovieList movies={movies} />
+            <GlobalStyles />
+        </ThemeProvider>
+    );
+};
 
 export default App;
