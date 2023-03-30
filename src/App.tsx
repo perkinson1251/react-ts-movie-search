@@ -15,7 +15,6 @@ const App = () => {
     useEffect(() => {
         const fetchData = async () => {
             const { Search } = await moviesService.getSearchResults({ movieName: "Star" });
-            console.log(Search);
             setMovies(Search);
         };
         fetchData();
