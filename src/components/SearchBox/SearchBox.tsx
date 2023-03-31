@@ -11,10 +11,12 @@ interface SearchBoxProps {
 
 const SearchBox = ({ placeholder, onSubmit, onChange, value }: SearchBoxProps) => {
     return (
-        <S.Form onSubmit={onSubmit}>
-            <S.Input type="search" placeholder={placeholder} onChange={onChange} value={value} />
-            <S.Button type="submit">Search</S.Button>
-        </S.Form>
+        <form onSubmit={onSubmit}>
+            <S.Container>
+                <S.Input type="text" placeholder={placeholder} onChange={onChange} value={value} />
+                <S.Button type="submit">Search</S.Button>
+            </S.Container>
+        </form>
     );
 };
 

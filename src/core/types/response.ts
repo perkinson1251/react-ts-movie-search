@@ -34,7 +34,7 @@ export interface SearchResponse {
     Poster: string;
 }
 
-interface Rating {
+export interface Rating {
     Source: string;
     Value: string;
 }

@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import configFile from "config.json";
 
 const api = axios.create({
@@ -11,7 +10,7 @@ api.interceptors.response.use(
     (error) => {
         const expectedError = error.response && error.response.status >= 400 && error.response.status < 500;
 
-        if (!expectedError) {
+        if (!expectedError && process.env.NODE_ENV === "development") {
             console.log(error);
         }
         return Promise.reject(error);
@@ -19,7 +18,7 @@ api.interceptors.response.use(
 );
 
 const moviesService = {
-    getSearchResults: async (payload: PayloadProps) => {
+    getSearchResults: async (payload: SearchPayloadProps) => {
         const { data } = await api.get("", {
             params: {
                 apikey: process.env.REACT_APP_API_KEY,
@@ -28,10 +27,24 @@ const moviesService = {
         });
         return data;
     },
+    getMovieInfo: async (payload: SearchFilmPayloadProps) => {
+        const { data } = await api.get("", {
+            params: {
+                apikey: process.env.REACT_APP_API_KEY,
+                i: payload.id,
+                plot: "full",
+            },
+        });
+        return data;
+    },
 };
 
 export default moviesService;
 
-interface PayloadProps {
+interface SearchPayloadProps {
     movieName: string;
+}
+
+interface SearchFilmPayloadProps {
+    id: string;
 }

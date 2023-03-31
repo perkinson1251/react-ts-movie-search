@@ -1,33 +1,26 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 
 import * as S from "./styles";
 
 import Logo from "assets/Logo.svg";
-
-import SearchBox from "components/SearchBox/SearchBox";
+import { TextLG } from "styles/components";
 
 const Navbar = () => {
-    const [searchInput, setSearchInput] = useState("");
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setSearchInput(e.target.value);
-    };
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-    };
-
     return (
         <S.Navbar>
             <S.Box>
-                <img src={Logo} alt="" />
-                <SearchBox
-                    placeholder="Search a movie..."
-                    onSubmit={handleSubmit}
-                    onChange={handleChange}
-                    value={searchInput}
-                />
+                <S.Logo src={Logo} alt="Logotype" />
+                <S.Links>
+                    <Link to="/">
+                        <TextLG>Home</TextLG>
+                    </Link>
+                    <S.Link href="https://github.com/perkinson1251" target="_blank">
+                        <TextLG>GitHub account</TextLG>
+                    </S.Link>
+                    <S.Link href="https://github.com/perkinson1251/react-ts-movie-search" target="_blank">
+                        <TextLG>Repo</TextLG>
+                    </S.Link>
+                </S.Links>
             </S.Box>
         </S.Navbar>
     );

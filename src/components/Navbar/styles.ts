@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Container } from "styles/components";
 
-import { WhiteTheme } from "styles/theme";
+import { DarkTheme } from "styles/theme";
 
 export const Navbar = styled.div`
     width: 100%;
 
-    background-color: ${WhiteTheme.colors.navbarColor};
+    background-color: ${DarkTheme.colors.navbarColor};
     backdrop-filter: blur(8px);
 
-    position: sticky;
+    position: fixed;
     top: 0;
 `;
 
@@ -19,4 +19,26 @@ export const Box = styled(Container)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+`;
+
+export const Logo = styled.img`
+    @media ${({ theme }) => theme.media.small} {
+        display: none;
+    }
+`;
+
+export const Links = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media ${({ theme }) => theme.media.small} {
+        width: 100%;
+        justify-content: center;
+    }
+`;
+
+export const Link = styled.a`
+    text-decoration: none;
+    color: #fff;
 `;

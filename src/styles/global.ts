@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-import { WhiteTheme } from "./theme";
+import { DarkTheme } from "./theme";
 
 export default createGlobalStyle`
     *, *::before, *::after {
@@ -10,17 +10,24 @@ export default createGlobalStyle`
     }
 
     html {
-        font-size: ${WhiteTheme.sizes.htmlFontSize};
+        font-size: ${DarkTheme.sizes.htmlFontSize};
     }
 
     body {
         font-family: "DM Sans", sans-serif;
-
-        background-color: #000;
+        color: ${DarkTheme.colors.textColor};
+        font-size: ${DarkTheme.sizes.mainFontSize};
+        overflow-x: hidden;
+        background-color: ${DarkTheme.colors.backgroundColor};
+        background-image: ${DarkTheme.colors.backgroundImage};
     }
 
     .root {
         width: 100%;
         height: 100%;
+    }
+
+    a {
+        text-decoration: none;
     }
 `;

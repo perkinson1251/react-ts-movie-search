@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { DarkTheme } from "styles/theme";
 
 export const CardContainer = styled.div`
-    max-width: 25rem;
+    max-width: ${DarkTheme.sizes.filmCard.width};
     row-gap: 1.2rem;
     display: flex;
     align-items: flex-start;

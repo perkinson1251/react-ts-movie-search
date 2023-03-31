@@ -1,34 +1,22 @@
-import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
 
-import { WhiteTheme } from "styles/theme";
+import { DarkTheme } from "styles/theme";
 import GlobalStyles from "styles/global";
-import MovieList from "components/MovieList/MovieList";
+import "react-toastify/dist/ReactToastify.css";
 
-import { SearchResponse } from "core/types/response";
-import moviesService from "core/services/movies.service";
-import Navbar from "components/Navbar/Navbar";
+import Mainpage from "pages/Mainpage/Mainpage";
+import Moviepage from "pages/MoviePage/Moviepage";
 
 const App = () => {
-    const [movies, setMovies] = useState<SearchResponse[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const { Search } = await moviesService.getSearchResults({ movieName: "Star" });
-            setMovies(Search);
-        };
-        fetchData();
-    }, []);
-
     return (
-        <ThemeProvider theme={WhiteTheme}>
-            <Navbar />
-            <MovieList movies={movies} />
-            <MovieList movies={movies} />
-            <MovieList movies={movies} />
-            <MovieList movies={movies} />
-            <MovieList movies={movies} />
-            <MovieList movies={movies} />
+        <ThemeProvider theme={DarkTheme}>
+            <Routes>
+                <Route path="/" element={<Mainpage />}></Route>
+                <Route path="/:imdbID" element={<Moviepage />}></Route>
+            </Routes>
+            <ToastContainer theme="dark" style={{ fontSize: "1.5rem" }} />
             <GlobalStyles />
         </ThemeProvider>
     );

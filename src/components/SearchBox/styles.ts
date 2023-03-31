@@ -1,33 +1,35 @@
 import styled from "styled-components";
 
-import SearchIcon from "assets/icons/Search.svg";
+import { DarkTheme } from "styles/theme";
 
-export const Form = styled.form`
-    color: #ffffff;
+import getTransition from "core/utils/getTransition";
+
+export const Container = styled.div`
     display: flex;
-    padding: 0.5rem;
-    border: 0.2rem solid white;
-    border-radius: 0.5rem;
+    gap: 1rem;
 `;
 
 export const Input = styled.input`
-    border: none;
-    outline: none;
     background: transparent;
-    padding: 0.5rem;
+    border: 1px solid ${DarkTheme.colors.gray400};
+    border-radius: ${DarkTheme.sizes.borderRadius};
+    outline: none;
+    padding: 1.2rem;
     font-size: 1.6rem;
     color: inherit;
+
+    &:focus {
+        border-color: ${DarkTheme.colors.textColor};
+    }
+
+    ${getTransition(DarkTheme.durations.ms500, ["border", "border-color"])}
 `;
 
 export const Button = styled.button`
-    text-indent: -999px;
-    overflow: hidden;
-    width: 40px;
-    padding: 0;
-    margin: 0;
-    border: 1px solid transparent;
-    border-radius: inherit;
-    background: transparent url(${SearchIcon}) no-repeat center;
+    background: ${DarkTheme.colors.rose700};
+    border: none;
+    outline: none;
     cursor: pointer;
-    opacity: 0.7;
+    padding: 1.2rem 1.8rem;
+    border-radius: ${DarkTheme.sizes.borderRadius};
 `;
